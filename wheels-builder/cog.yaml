@@ -1,0 +1,10 @@
+build:
+  cog_runtime: true
+  gpu: true
+  cuda: "12.4"
+  python_version: "3.11"
+  python_requirements: "requirements-build.txt"
+  system_packages:
+    - "build-essential"
+
+predict: "wheel-builder.py:Predictor" 
