@@ -8,9 +8,20 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+          df -h
       - uses: actions/checkout@v4
-      - uses: replicate/setup-cog@v2
-        with:
-          token: ${{ secrets.REPLICATE_API_TOKEN }}
+      - name: Install Cog
+        run: |
+          sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/latest/download/cog_`uname -s`_`uname -m`
+          sudo chmod +x /usr/local/bin/cog
       - name: Push to Replicate
         run: cog push r8.im/ztansu/hunyuan3d-2-1
+        env:
+          COG_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
