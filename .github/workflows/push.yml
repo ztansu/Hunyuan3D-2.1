@@ -15,7 +15,6 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf /opt/hostedtoolcache/CodeQL
           sudo docker image prune --all --force
-          df -h
       - uses: actions/checkout@v4
       - name: Install Cog
         run: |
@@ -24,4 +23,4 @@ jobs:
       - name: Push to Replicate
         run: cog push r8.im/ztansu/hunyuan3d-2-1
         env:
-          COG_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
