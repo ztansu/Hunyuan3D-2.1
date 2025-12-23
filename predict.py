@@ -94,13 +94,13 @@ class Predictor(BasePredictor):
         ),
         max_facenum: int = Input(
             description="Maximum number of faces for mesh generation",
-            default=20000,
+            default=40000,
             ge=10000,
             le=200000
         ),
         num_chunks: int = Input(
             description="Number of chunks for mesh generation",
-            default=8000,
+            default=200000,
             ge=1000,
             le=200000
         ),
@@ -215,4 +215,4 @@ class Predictor(BasePredictor):
                 "error": str(e),
                 "error_type": type(e).__name__
             })
-            raise 
+            raise
